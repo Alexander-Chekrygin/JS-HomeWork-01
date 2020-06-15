@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <ul id="rar">
+        <li>Первый элемент</li>
+        <li>Второй элемент</li>
+        <li>Третий элемент</li>
+        <li>Четвёртый элемент</li>
+        <li>Пятый элемент</li>
+    </ul>
+
+
+    <div class="click">
+        <button onclick="firstElement()">Выбрать первый элемент</button>
+        <button onclick="lastElement()">Выбрать последний элемент</button>
+        <button onclick="nextElement()">Выбрать следующий элемент</button>
+        <button onclick="prevElement()">Выбрать предыдущий элемент</button>
+        <button onclick="addElement()">Добавить элемент</button>
+        <button onclick="deleteElement()">Удалить элемент</button>
+        <button onclick="addToStart()">Добавить в начало</button>
+    </div>
+
+    <style>
+        .click button{
+        display: block;
+        width: 15%;
+        }
+    </style>
+
+    <script>
+        function firstElement() {
+                var firstElement = document.getElementById("rar").firstElementChild;
+                if (firstElement.style.color != "red") {
+                    firstElement.style.color = "red"
+                } else {
+                    firstElement.style = "none"
+                }
+            }
+
+            // _________________________________________________________________
+
+            function lastElement() {
+                var lastElement = document.getElementById("rar").lastElementChild;
+                if (lastElement.style.color != "red") {
+                    lastElement.style.color = "red"
+                } else {
+                   lastElement.style = "none"
+                }
+            }
+
+
+            // _________________________________________________________________
+
+            var node = null;
+
+            function nextElement() {
+
+                setColorById();
+                if (node == null) {
+                    var list = document.getElementById('rar');
+                    node = list.firstChild.nextSibling;
+                    node.style.color = 'red';
+                    return;
+                }
+                node = node.nextElementSibling;
+                if (node != null) {
+                    node.style.color = 'red';
+
+                }
+            }
+
+            function setColorById() {
+                var list = document.getElementsByTagName("LI");
+
+                for (let i = 0; i < list.length; i++) {
+                    list[i].style.color = "black";
+                }
+            };
+
+
+            // _________________________________________________________________
+
+
+            function prevElement() {
+
+                setColorById();
+                if (node == null) {
+                    var list = document.getElementById('rar');
+                    node = list.lastChild.previousSibling;
+                    console.log(node);
+                    node.style.color = 'red';
+                    return;
+                }
+                node = node.previousElementSibling;
+                if (node != null) {
+                    node.style.color = 'red';
+                }
+            }
+
+
+
+            // _________________________________________________________________
+
+            function addElement() {
+                var addElement = document.getElementById("rar");
+                var li = document.createElement('li');
+                li.innerHTML = 'Новый элемент списка';
+                addElement.appendChild(li);
+            }
+
+            // _________________________________________________________________
+
+            function addToStart() {
+                var addToStart = document.getElementById("rar");
+                var lest = document.createElement('li');
+                lest.innerHTML = 'Новый элемент списка';
+                addToStart.insertBefore(lest, addToStart.firstChild);;
+            }
+
+            // _________________________________________________________________
+
+
+            function deleteElement() {
+                var deleteElement = document.getElementById("rar");
+                deleteElement.removeChild(deleteElement.lastElementChild);
+            }
+
+// _________________________________________________________________
+
+        
+    </script>
+</body>
+</html>
